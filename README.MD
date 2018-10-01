@@ -4,4 +4,6 @@ Restful API development project with Express and MongoDB.
 
 ![nodejs](https://camo.githubusercontent.com/a58899969d8cd73c0e82619ca338965324cd9def/68747470733a2f2f6d65686d6574736576656e2e6e65742f636f6e74656e742f696d616765732f323031372f31322f6e6f64656a732d6d65686d65742d736576656e2e6a7067)
 
-## Route | HTTP Verb | Post Body
+| Route | HTTP Verb | Post Body
+| --- | --- | --- | --- |
+| /api/movie/getAll | 'GET' | Empty|
