@@ -6,6 +6,7 @@ const Movie = require('../models/model-movie');
 /*---------------------------------------- Variable Definition ----------------------------------------*/
 
 /*----------------------------------------- Control Structure -----------------------------------------*/
+// Get all movies
 router.get('/', (req, res) => {
   const promise = Movie.find({});
   
@@ -27,12 +28,12 @@ router.get('/top10', (req, res) => {
   });
 });
 
+// Movies detail
 router.get('/:movie_id', (req, res, next) => {
   const promise = Movie.findById(req.params.movie_id);
 
   promise.then((data) => {
-    if (!data) 
-      next({message: 'The movie was not found!', code: 1001});
+    if (!data) next({message: 'The movie was not found!', code: 1001});
     
     res.json(data);
   }).catch((err) => {
@@ -40,6 +41,7 @@ router.get('/:movie_id', (req, res, next) => {
   });
 });
 
+// Movies update
 router.put('/:movie_id', (req, res, next) => {
   const promise = Movie.findByIdAndUpdate(req.params.movie_id, req.body, {new: true /*Parameter used to display updated data*/});
 
@@ -53,6 +55,7 @@ router.put('/:movie_id', (req, res, next) => {
   });
 });
 
+// Movies update
 router.delete('/:movie_id', (req, res, next) => {
   const promise = Movie.findByIdAndRemove(req.params.movie_id);
 
@@ -66,6 +69,7 @@ router.delete('/:movie_id', (req, res, next) => {
   });
 });
 
+// Movies save
 router.post('/', (req, res, next) => {
   /* ----------------- You can use such -----------------
   const {title, category, country, year, imdb_score} = req.body;
@@ -89,7 +93,7 @@ router.post('/', (req, res, next) => {
   });
 });
 
-// Between/:start_year/:end_year 
+// Get Between/:start_year/:end_year 
 router.get('/between/:start_year/:end_year', (req, res) => {
   const { start_year, end_year } = req.params;
   const promise = Movie.find({
