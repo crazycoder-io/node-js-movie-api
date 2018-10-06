@@ -11,4 +11,5 @@ const DirectorSchema = new Schema({
         default: Date.now
     }
 });
+
 module.exports = mongoose.model('director', DirectorSchema);
