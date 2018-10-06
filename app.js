@@ -10,7 +10,6 @@ const movie = require('./routes/movie');
 const director = require('./routes/directors');
 // db connection
 const db = require('./helper/db')();
-
 const app = express();
 
 // view engine setup
