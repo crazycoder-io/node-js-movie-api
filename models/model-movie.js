@@ -6,7 +6,7 @@ const MovieSchema = new Schema({
     director_id: Schema.Types.ObjectId,
     title: {
         type: String,
-        required: true
+        required: [true, '`{PATH}` field is required!']
     },
     category: String,
     country: String,
