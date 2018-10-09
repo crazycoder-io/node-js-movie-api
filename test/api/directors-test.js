@@ -8,12 +8,11 @@ chai.use(chaiHTTP);
 let token, director_id;
 
 // We define the test we will write
-describe('/api/movies tests', () => {
+describe('/api/directors tests', () => {
     // This method' s task bring token
     before((done) => {
         chai.request(server)
-            .post('/authenticate')
-            .send({ userName: 'crazycoder', password: '12345'})
+            .post('/authenticate/crazycoder/12345')
             .end((err, res) => {
                 token = res.body.token;
                 done(); // It means test finished
