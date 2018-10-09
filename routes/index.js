@@ -11,8 +11,9 @@ router.get('/', (req, res) => {
 });
 
 // Register user
-router.post('/register', (req, res) => {
-  const { userName, password } = req.body;
+router.post('/register/:username/:password', (req, res) => {
+  const userName = req.params.username;
+  const password = req.params.password;
 
   bcrypt.hash(password, 10 /* default encryption range */).then(hash => {
     const user = new User({
@@ -30,8 +31,9 @@ router.post('/register', (req, res) => {
 });
 
 // Login
-router.post('/authenticate', (req, res) => {
-  const { userName, password } = req.body;
+router.post('/authenticate/:username/:password', (req, res) => {
+  const userName = req.params.username;
+  const password = req.params.password;
 
   User.findOne({
     userName
