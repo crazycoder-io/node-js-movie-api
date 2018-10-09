@@ -15,7 +15,7 @@ describe('/api/directors tests', () => {
             .post('/authenticate/crazycoder/12345')
             .end((err, res) => {
                 token = res.body.token;
-                done(); // It means test finished
+                done();
             });
     });
     // Test method of /GET directors
@@ -27,7 +27,7 @@ describe('/api/directors tests', () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
-                    done(); // It means test finished
+                    done(); 
                 });
         });
     });
