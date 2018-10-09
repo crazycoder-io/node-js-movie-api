@@ -19,7 +19,6 @@ describe('/api/movies tests', () => {
                 done(); // It means test finished
             });
     });
-
     // Test method of /GET movies
     describe('/GET movies', () => {
         it('It should GET all the movies', (done) => {
@@ -33,7 +32,6 @@ describe('/api/movies tests', () => {
                 });
         });
     });
-
     // Test method of /POST movies
     describe('/POST movies', () => {
         it('It should POST a movie', (done) => {
@@ -63,8 +61,7 @@ describe('/api/movies tests', () => {
                 });
         });
     });
-
-    // Test method of
+    // Test method of /GET movies by the given id
     describe('/GET/:movie_id movie', () => {
         it('It should GET a movie by the given id', (done) => {
             chai.request(server)
@@ -80,6 +77,48 @@ describe('/api/movies tests', () => {
                     res.body.should.have.property('year');
                     res.body.should.have.property('imdb_score');
                     res.body.should.have.property('_id').eql(movie_id);
+                    done();
+                });
+        });
+    });
+    // Test method of /PUT movie by the given id
+    describe('/PUT movie', () => {
+        it('It should UPDATE a movie given by id', (done) => {
+            const movie = {
+                director_id: '5bba0104210f1219b7a6115b',
+                title: 'PUT TEST',
+                category: 'Test codes for PUT',
+                country: 'Turkey',
+                year: 2000,
+                imdb_score: 9
+            };
+            chai.request(server)
+                .put('/api/movies/' + movie_id)
+                .send(movie)
+                .set('x-access-token', token)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('title').eql(movie.title);
+                    res.body.should.have.property('director_id').eql(movie.director_id);
+                    res.body.should.have.property('category').eql(movie.category);
+                    res.body.should.have.property('country').eql(movie.country);
+                    res.body.should.have.property('year').eql(movie.year);
+                    res.body.should.have.property('imdb_score').eql(movie.imdb_score);
+                    done();
+                });
+        });
+    });
+    // Test method of /DELETE movie by the given id
+    describe('/DELETE movie', () => {
+        it('It should DELETE a movie given by id', (done) => {
+            chai.request(server)
+                .delete('/api/movies/' + movie_id)
+                .set('x-access-token', token)
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('status').eql(1);
                     done();
                 });
         });
