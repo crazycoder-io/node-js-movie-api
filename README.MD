@@ -1,3 +1,5 @@
+[![Build status](https://api/travis-ci.org/crazycodertr/nodejs-movieapi.svg)](https://travis-ci.org/crazycodertr/nodejs-movieapi)
+
 # NODEJS - Movie API
 
 Restful API development project with Express and MongoDB.
