@@ -4,17 +4,17 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const movie = require('./routes/movie');
 const director = require('./routes/directors');
 // db connection
-require('./helper/db')();
+const db = require('./helper/db')();
 const app = express();
+const config = require('./config');
 // Middleware
 const verifyToken = require('./middleware/verify-token');
-app.set('api_secret_keys', process.env.SECRET_KEY);
+app.set('api_secret_keys', config.api_secret_keys);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

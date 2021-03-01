@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 module.exports = () => {
-    mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true, useUnifiedTopology: true}); // Connect to the remote db
-	mongoose.set('useCreateIndex', true); // Use create index same as T-SQL
+    mongoose.connect('mongodb://movie_api:connect123@ds219983.mlab.com:19983/movie-api', {useMongoClient: true});
     mongoose.connection.on('open', () => {
         console.log('Connection Succesful!');
     });
