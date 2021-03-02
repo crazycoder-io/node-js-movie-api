@@ -4,11 +4,12 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Director = require('../models/model-directors');
+const verifyToken = require('../middleware/verify-token');
 /*---------------------------------------- Variable Definition ----------------------------------------*/
 
 /*----------------------------------------- Control Structure -----------------------------------------*/
 // Save directors
-router.post('/', (req, res) => {
+router.post('/', verifyToken, (req, res) => {
   const director = new Director(req.body);
   const promise = director.save();
 
@@ -154,7 +155,7 @@ router.get('/:director_id', (req, res, next) => {
 });
 
 // Director update
-router.put('/:director_id', (req, res, next) => {
+router.put('/:director_id', verifyToken, (req, res, next) => {
   const promise = Director.findByIdAndUpdate(req.params.director_id, req.body, { new: true, useFindAndModify: true /*Parameter used to display updated data*/ });
 
   promise.then(data => {
@@ -166,7 +167,7 @@ router.put('/:director_id', (req, res, next) => {
 });
 
 // Director delete
-router.delete('/:director_id', (req, res, next) => {
+router.delete('/:director_id', verifyToken, (req, res, next) => {
   const promise = Director.findByIdAndRemove(req.params.director_id);
 
   promise.then(data => {

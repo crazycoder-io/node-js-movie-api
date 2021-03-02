@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const Movie = require('../models/model-movie');
+const verifyToken = require('../middleware/verify-token');
 /*---------------------------------------- Variable Definition ----------------------------------------*/
 
 /*----------------------------------------- Control Structure -----------------------------------------*/
@@ -54,7 +55,7 @@ router.get('/:movie_id', (req, res, next) => {
 });
 
 // Movies update
-router.put('/:movie_id', (req, res, next) => {
+router.put('/:movie_id', verifyToken, (req, res, next) => {
   const promise = Movie.findByIdAndUpdate(req.params.movie_id, req.body, {new: true, useFindAndModify: true /*Parameter used to display updated data*/});
 
   promise.then((data) => {
@@ -68,7 +69,7 @@ router.put('/:movie_id', (req, res, next) => {
 });
 
 // Movies update
-router.delete('/:movie_id', (req, res, next) => {
+router.delete('/:movie_id', verifyToken, (req, res, next) => {
   const promise = Movie.findByIdAndRemove(req.params.movie_id);
 
   promise.then((data) => {
@@ -82,7 +83,7 @@ router.delete('/:movie_id', (req, res, next) => {
 });
 
 // Movies save
-router.post('/', (req, res, next) => {
+router.post('/', verifyToken, (req, res, next) => {
   /* ----------------- You can use such -----------------
   const {title, category, country, year, imdb_score} = req.body;
   const movie = new Movie({
