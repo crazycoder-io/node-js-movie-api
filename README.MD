@@ -11,7 +11,7 @@ Restful API development project with Express and MongoDB. It works on [heroku se
 Route | HTTP Verb | POST body | Description
 --- | --- | --- | ---
 /api/movies/ | `GET` | Empty | List all movies.
-/api/movies/ | `POST` | {'title':'foo', 'category':'bar', 'country':'Turkey', year:1990, director:"id", imdb_score: 9.7 } | Create a new movie.
+/api/movies/ | `POST` | {'title':'foo', 'category':'bar', 'country':'Turkey', year:1990, director:"id", imdb_score: 9.7, 'photo': 'url' } | Create a new movie.
 /api/movies/:movie_id | `GET` | Empty | Get a movie
 /api/movies/:movie_id | `PUT` | {'name':'foo', 'surname':'bar'} | Update a movie with new info.
 /api/movies/:movie_id | `DELETE` | Empty | Delete a movie.
@@ -34,3 +34,4 @@ Route | HTTP Verb | POST body | Description
 Route | HTTP Verb | POST body | Description
 --- | --- | --- | ---
 /register | `POST` | {username: 'foo', password: '1234'} | Create a new user.
+/authentication | `POST` | {username: 'foo', password: '1234'} | Auth and get token.
