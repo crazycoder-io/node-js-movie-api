@@ -1,4 +1,4 @@
-[![Build status](https://travis-ci.org/crazycoderTR/node-js-movie-api.svg)](https://travis-ci.org/crazycodertr/nodejs-movieapi)
+[![Build status](https://travis-ci.org/crazycoderTR/node-js-movie-api.svg)](https://travis-ci.org/crazycoder-io/node-js-movie-api)
 
 # NODEJS - Movie API
 
