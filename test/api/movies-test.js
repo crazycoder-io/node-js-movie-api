@@ -12,7 +12,8 @@ describe('/api/movies tests', () => {
     // This method' s task bring token
     before((done) => {
         chai.request(server)
-            .post('/authenticate', { userName: 'crazycoder', password: 'movieuser' })
+            .post('/authenticate')
+            .send({ userName: 'crazycoder', password: 'movieuser' })
             .end((err, res) => {
                 token = res.body.token;
                 done(); 
@@ -35,7 +36,7 @@ describe('/api/movies tests', () => {
     describe('/POST movies', () => {
         it('It should POST a movie', (done) => {
             const movie = {
-                director_id: '5bba0104210f1219b7a6115b',
+                director_id: '603c1d7c53dfd900159a56d6',
                 title: 'TEST',
                 category: 'Test codes',
                 country: 'Turkey',
@@ -84,7 +85,7 @@ describe('/api/movies tests', () => {
     describe('/PUT movie', () => {
         it('It should UPDATE a movie given by id', (done) => {
             const movie = {
-                director_id: '5bba0104210f1219b7a6115b',
+                director_id: '603c1d7c53dfd900159a56d6',
                 title: 'PUT TEST',
                 category: 'Test codes for PUT',
                 country: 'Turkey',

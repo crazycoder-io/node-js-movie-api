@@ -9,7 +9,7 @@ const Director = require('../models/model-directors');
 /*----------------------------------------- Control Structure -----------------------------------------*/
 // Save directors
 router.post('/', (req, res) => {
-  const director = new Director(req.body); 
+  const director = new Director(req.body);
   const promise = director.save();
 
   promise.then(data => {
@@ -155,7 +155,7 @@ router.get('/:director_id', (req, res, next) => {
 
 // Director update
 router.put('/:director_id', (req, res, next) => {
-  const promise = Director.findByIdAndUpdate(req.params.director_id, req.body, { new: true /*Parameter used to display updated data*/ });
+  const promise = Director.findByIdAndUpdate(req.params.director_id, req.body, { new: true, useFindAndModify: true /*Parameter used to display updated data*/ });
 
   promise.then(data => {
     if(!data) next({message: 'The director was not found!', code: 1001 });

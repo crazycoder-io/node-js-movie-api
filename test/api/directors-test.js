@@ -12,7 +12,8 @@ describe('/api/directors tests', () => {
     // This method' s task bring token
     before((done) => {
         chai.request(server)
-            .post('/authenticate/crazycoder/12345')
+            .post('/authenticate')
+            .send({ userName: 'crazycoder', password: 'movieuser' })
             .end((err, res) => {
                 token = res.body.token;
                 done();
@@ -27,7 +28,7 @@ describe('/api/directors tests', () => {
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
-                    done(); 
+                    done();
                 });
         });
     });
@@ -41,8 +42,8 @@ describe('/api/directors tests', () => {
             };
             chai.request(server)
                 .post('/api/directors')
-                .send(director)
                 .set('x-access-token', token)
+                .send(director)
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('object');

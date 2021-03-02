@@ -55,7 +55,7 @@ router.get('/:movie_id', (req, res, next) => {
 
 // Movies update
 router.put('/:movie_id', (req, res, next) => {
-  const promise = Movie.findByIdAndUpdate(req.params.movie_id, req.body, {new: true /*Parameter used to display updated data*/});
+  const promise = Movie.findByIdAndUpdate(req.params.movie_id, req.body, {new: true, useFindAndModify: true /*Parameter used to display updated data*/});
 
   promise.then((data) => {
     if (!data) 
