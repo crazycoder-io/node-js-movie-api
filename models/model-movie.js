@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const MovieSchema = new Schema({
     director_id: Schema.Types.ObjectId,
+    photo: String,
     title: {
         type: String,
         required: [true, '`{PATH}` field is required!']
